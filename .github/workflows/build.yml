@@ -1,0 +1,72 @@
+# Compila o APK de teste do synth modular e roda os testes do motor.
+# Funciona de dois jeitos:
+#   1) o repositório contém só o arquivo synth-modular.zip (mais este workflow): ele descompacta sozinho;
+#   2) o repositório contém as pastas do projeto (android-app, src, tests) na raiz.
+name: Build Android
+
+on:
+  push:
+  workflow_dispatch:
+
+jobs:
+  testes-do-motor:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Localiza o projeto (descompacta o zip, se houver)
+        run: |
+          if [ -f synth-modular.zip ]; then
+            unzip -q -o synth-modular.zip -d work
+            echo "ROOT=work/synth-modular" >> "$GITHUB_ENV"
+          else
+            echo "ROOT=." >> "$GITHUB_ENV"
+          fi
+
+      - name: Testes do Stages
+        working-directory: ${{ env.ROOT }}
+        run: |
+          g++ -std=c++17 -O2 -Wall -Wextra -Isrc tests/test_stages.cpp -o test_stages
+          ./test_stages | tail -n 3
+
+      - name: Testes do patch do app
+        working-directory: ${{ env.ROOT }}
+        run: |
+          g++ -std=c++17 -O2 -Wall -Wextra -Isrc tests/test_patch.cpp -o test_patch
+          ./test_patch | tail -n 3
+
+  apk:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Localiza o projeto (descompacta o zip, se houver)
+        run: |
+          if [ -f synth-modular.zip ]; then
+            unzip -q -o synth-modular.zip -d work
+            echo "ROOT=work/synth-modular" >> "$GITHUB_ENV"
+          else
+            echo "ROOT=." >> "$GITHUB_ENV"
+          fi
+
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "17"
+
+      - uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-version: "8.9"
+
+      - name: Aceita as licenças do Android SDK
+        run: yes | "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" --licenses > /dev/null || true
+
+      - name: Compila o APK de debug
+        working-directory: ${{ env.ROOT }}/android-app
+        run: gradle :app:assembleDebug --no-daemon --stacktrace
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: synth-modular-debug-apk
+          path: ${{ env.ROOT }}/android-app/app/build/outputs/apk/debug/app-debug.apk
+          if-no-files-found: error
