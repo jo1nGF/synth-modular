@@ -1,0 +1,14 @@
+https://raw.githubusercontent.com/jo1nGF/synth-modular/fontes/mi/grids/__init__.py
+https://raw.githubusercontent.com/jo1nGF/synth-modular/fontes/mi/grids/bootloader/bootloader.cc
+https://raw.githubusercontent.com/jo1nGF/synth-modular/fontes/mi/grids/bootloader/makefile
+https://raw.githubusercontent.com/jo1nGF/synth-modular/fontes/mi/grids/clock.cc
+https://raw.githubusercontent.com/jo1nGF/synth-modular/fontes/mi/grids/clock.h
+https://raw.githubusercontent.com/jo1nGF/synth-modular/fontes/mi/grids/grids.cc
+https://raw.githubusercontent.com/jo1nGF/synth-modular/fontes/mi/grids/hardware_config.h
+https://raw.githubusercontent.com/jo1nGF/synth-modular/fontes/mi/grids/makefile
+https://raw.githubusercontent.com/jo1nGF/synth-modular/fontes/mi/grids/pattern_generator.cc
+https://raw.githubusercontent.com/jo1nGF/synth-modular/fontes/mi/grids/pattern_generator.h
+https://raw.githubusercontent.com/jo1nGF/synth-modular/fontes/mi/grids/resources.h
+https://raw.githubusercontent.com/jo1nGF/synth-modular/fontes/mi/grids/resources/__init__.py
+https://raw.githubusercontent.com/jo1nGF/synth-modular/fontes/mi/grids/resources/lookup_tables.py
+https://raw.githubusercontent.com/jo1nGF/synth-modular/fontes/mi/grids/resources/resources.py

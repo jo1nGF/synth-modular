@@ -1,0 +1,11 @@
+https://raw.githubusercontent.com/jo1nGF/synth-modular/fontes/qiemem/tools/__init__.py
+https://raw.githubusercontent.com/jo1nGF/synth-modular/fontes/qiemem/tools/hex2sysex/__init__.py
+https://raw.githubusercontent.com/jo1nGF/synth-modular/fontes/qiemem/tools/hex2sysex/hex2sysex.py
+https://raw.githubusercontent.com/jo1nGF/synth-modular/fontes/qiemem/tools/hexfile/__init__.py
+https://raw.githubusercontent.com/jo1nGF/synth-modular/fontes/qiemem/tools/hexfile/hexfile.py
+https://raw.githubusercontent.com/jo1nGF/synth-modular/fontes/qiemem/tools/learning/__init__.py
+https://raw.githubusercontent.com/jo1nGF/synth-modular/fontes/qiemem/tools/learning/som.py
+https://raw.githubusercontent.com/jo1nGF/synth-modular/fontes/qiemem/tools/midi/__init__.py
+https://raw.githubusercontent.com/jo1nGF/synth-modular/fontes/qiemem/tools/midi/midifile.py
+https://raw.githubusercontent.com/jo1nGF/synth-modular/fontes/qiemem/tools/optimization/__init__.py
+https://raw.githubusercontent.com/jo1nGF/synth-modular/fontes/qiemem/tools/optimization/munkres.py

@@ -1,0 +1,14 @@
+https://raw.githubusercontent.com/jo1nGF/synth-modular/fontes/qiemem/grids/__init__.py
+https://raw.githubusercontent.com/jo1nGF/synth-modular/fontes/qiemem/grids/bootloader/bootloader.cc
+https://raw.githubusercontent.com/jo1nGF/synth-modular/fontes/qiemem/grids/bootloader/makefile
+https://raw.githubusercontent.com/jo1nGF/synth-modular/fontes/qiemem/grids/clock.cc
+https://raw.githubusercontent.com/jo1nGF/synth-modular/fontes/qiemem/grids/clock.h
+https://raw.githubusercontent.com/jo1nGF/synth-modular/fontes/qiemem/grids/grids.cc
+https://raw.githubusercontent.com/jo1nGF/synth-modular/fontes/qiemem/grids/hardware_config.h
+https://raw.githubusercontent.com/jo1nGF/synth-modular/fontes/qiemem/grids/makefile
+https://raw.githubusercontent.com/jo1nGF/synth-modular/fontes/qiemem/grids/pattern_generator.cc
+https://raw.githubusercontent.com/jo1nGF/synth-modular/fontes/qiemem/grids/pattern_generator.h
+https://raw.githubusercontent.com/jo1nGF/synth-modular/fontes/qiemem/grids/resources.h
+https://raw.githubusercontent.com/jo1nGF/synth-modular/fontes/qiemem/grids/resources/__init__.py
+https://raw.githubusercontent.com/jo1nGF/synth-modular/fontes/qiemem/grids/resources/lookup_tables.py
+https://raw.githubusercontent.com/jo1nGF/synth-modular/fontes/qiemem/grids/resources/resources.py

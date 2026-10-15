@@ -1,0 +1,4 @@
+https://raw.githubusercontent.com/jo1nGF/synth-modular/fontes/qiemem/branches/bootloader/bootloader.cc
+https://raw.githubusercontent.com/jo1nGF/synth-modular/fontes/qiemem/branches/bootloader/makefile
+https://raw.githubusercontent.com/jo1nGF/synth-modular/fontes/qiemem/branches/branches.cc
+https://raw.githubusercontent.com/jo1nGF/synth-modular/fontes/qiemem/branches/makefile

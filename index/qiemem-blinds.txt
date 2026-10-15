@@ -1,0 +1,1 @@
+https://raw.githubusercontent.com/jo1nGF/synth-modular/fontes/qiemem/blinds/__init__.py

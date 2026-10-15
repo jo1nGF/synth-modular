@@ -1,0 +1,14 @@
+https://raw.githubusercontent.com/jo1nGF/synth-modular/fontes/mi/stm_audio_bootloader/README.md
+https://raw.githubusercontent.com/jo1nGF/synth-modular/fontes/mi/stm_audio_bootloader/__init__.py
+https://raw.githubusercontent.com/jo1nGF/synth-modular/fontes/mi/stm_audio_bootloader/audio_stream_writer.py
+https://raw.githubusercontent.com/jo1nGF/synth-modular/fontes/mi/stm_audio_bootloader/fsk/__init__.py
+https://raw.githubusercontent.com/jo1nGF/synth-modular/fontes/mi/stm_audio_bootloader/fsk/demodulator.h
+https://raw.githubusercontent.com/jo1nGF/synth-modular/fontes/mi/stm_audio_bootloader/fsk/encoder.py
+https://raw.githubusercontent.com/jo1nGF/synth-modular/fontes/mi/stm_audio_bootloader/fsk/packet_decoder.cc
+https://raw.githubusercontent.com/jo1nGF/synth-modular/fontes/mi/stm_audio_bootloader/fsk/packet_decoder.h
+https://raw.githubusercontent.com/jo1nGF/synth-modular/fontes/mi/stm_audio_bootloader/qpsk/__init__.py
+https://raw.githubusercontent.com/jo1nGF/synth-modular/fontes/mi/stm_audio_bootloader/qpsk/demodulator.cc
+https://raw.githubusercontent.com/jo1nGF/synth-modular/fontes/mi/stm_audio_bootloader/qpsk/demodulator.h
+https://raw.githubusercontent.com/jo1nGF/synth-modular/fontes/mi/stm_audio_bootloader/qpsk/encoder.py
+https://raw.githubusercontent.com/jo1nGF/synth-modular/fontes/mi/stm_audio_bootloader/qpsk/packet_decoder.cc
+https://raw.githubusercontent.com/jo1nGF/synth-modular/fontes/mi/stm_audio_bootloader/qpsk/packet_decoder.h

@@ -1,0 +1,4 @@
+https://raw.githubusercontent.com/jo1nGF/synth-modular/fontes/mi/branches/bootloader/bootloader.cc
+https://raw.githubusercontent.com/jo1nGF/synth-modular/fontes/mi/branches/bootloader/makefile
+https://raw.githubusercontent.com/jo1nGF/synth-modular/fontes/mi/branches/branches.cc
+https://raw.githubusercontent.com/jo1nGF/synth-modular/fontes/mi/branches/makefile
