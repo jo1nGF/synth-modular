@@ -6,6 +6,7 @@ name: Build Android
 
 on:
   push:
+    branches-ignore: [fontes]   # a branch "fontes" só guarda código-fonte de referência
   workflow_dispatch:
 
 jobs:
@@ -70,3 +71,4 @@ jobs:
           name: synth-modular-debug-apk
           path: ${{ env.ROOT }}/android-app/app/build/outputs/apk/debug/app-debug.apk
           if-no-files-found: error
+
