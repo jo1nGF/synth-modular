@@ -1,0 +1,68 @@
+# Baixa o código-fonte ORIGINAL (Mutable Instruments e firmware alternativo do qiemem) e o publica
+# na branch "fontes" do seu repositório, com um índice de links. Serve para eu ler o código real
+# (eu não consigo clonar repositórios daqui) e portar/comparar os módulos com exatidão.
+# Rode uma vez: aba Actions > "Coletar fontes originais" > Run workflow.
+name: Coletar fontes originais
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  coletar:
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Clona os repositórios originais (com o stmlib)
+        run: |
+          git config --global url."https://github.com/".insteadOf "git@github.com:"
+          git clone --depth 1 https://github.com/pichenettes/eurorack.git mi
+          git -C mi submodule update --init --recursive --depth 1 || git clone --depth 1 https://github.com/pichenettes/stmlib.git mi/stmlib
+          git clone --depth 1 --branch bipolar https://github.com/qiemem/eurorack.git qiemem
+          git -C qiemem submodule update --init --recursive --depth 1 || git clone --depth 1 https://github.com/pichenettes/stmlib.git qiemem/stmlib
+
+      - name: Seleciona só o código-fonte (sem tabelas gigantes, imagens e projetos de hardware)
+        run: |
+          mkdir -p out
+          for r in mi qiemem; do
+            rsync -a --prune-empty-dirs \
+              --exclude='.git' --exclude='resources.cc' --exclude='hardware_design' --exclude='*.pdf' --exclude='*.png' \
+              --include='*/' --include='*.h' --include='*.cc' --include='*.py' --include='*.md' \
+              --include='makefile' --include='*.mk' --exclude='*' \
+              "$r/" "out/$r/"
+          done
+          { echo "mi: $(git -C mi rev-parse HEAD)"; echo "qiemem: $(git -C qiemem rev-parse HEAD)"; } > out/VERSOES.txt
+          du -sh out
+          find out -type f | wc -l
+
+      - name: Gera o índice de links (um arquivo por módulo)
+        run: |
+          cd out
+          base="https://raw.githubusercontent.com/${GITHUB_REPOSITORY}/fontes"
+          mkdir -p index
+          { echo "# Fontes originais"; echo; cat VERSOES.txt; echo; echo "Índices por módulo:"; } > INDEX.md
+          for d in $(find . -mindepth 2 -maxdepth 2 -type d ! -path './index*' | sed 's|^\./||' | sort); do
+            name=$(echo "$d" | tr '/' '-')
+            find "$d" -type f | sort | sed "s|^|$base/|" > "index/$name.txt"
+            echo "$base/index/$name.txt" >> INDEX.md
+          done
+          cat INDEX.md | head -n 60
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: fontes-originais
+          path: out
+
+      - name: Publica na branch "fontes"
+        run: |
+          cd out
+          git init -q -b fontes
+          git config user.name "github-actions"
+          git config user.email "actions@users.noreply.github.com"
+          git add -A
+          git commit -q -m "Fontes originais da Mutable Instruments e do qiemem"
+          git remote add origin "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git"
+          git push -f origin fontes
+          echo "Pronto. Índice: https://raw.githubusercontent.com/${GITHUB_REPOSITORY}/fontes/INDEX.md"
+
