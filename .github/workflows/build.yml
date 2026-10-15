@@ -72,3 +72,44 @@ jobs:
           path: ${{ env.ROOT }}/android-app/app/build/outputs/apk/debug/app-debug.apk
           if-no-files-found: error
 
+  # Compila o código ORIGINAL do Stages (firmware do qiemem, licença MIT) e mede os mapeamentos reais.
+  # O texto da sonda aparece no passo "Roda a sonda" e fica salvo como artefato.
+  sonda-original:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Localiza o projeto (descompacta o zip, se houver)
+        run: |
+          if [ -f synth-modular.zip ]; then
+            unzip -q -o synth-modular.zip -d work
+            echo "ROOT=work/synth-modular" >> "$GITHUB_ENV"
+          else
+            echo "ROOT=." >> "$GITHUB_ENV"
+          fi
+
+      - name: Clona o firmware original (qiemem, branch bipolar) e o stmlib
+        run: |
+          git config --global url."https://github.com/".insteadOf "git@github.com:"
+          git clone --depth 1 --branch bipolar https://github.com/qiemem/eurorack.git orig
+          git -C orig submodule update --init --recursive --depth 1 || git clone --depth 1 https://github.com/pichenettes/stmlib.git orig/stmlib
+          echo "versão do firmware: $(git -C orig rev-parse HEAD)"
+
+      - name: Compila a sonda com os arquivos do makefile de teste do próprio repositório
+        working-directory: orig
+        run: |
+          g++ -std=gnu++17 -DTEST -msse2 -O2 -I. -Wno-unused-variable -Wno-deprecated-declarations \
+            "${GITHUB_WORKSPACE}/${ROOT}/tests/original_probe.cc" \
+            tides2/ramp/ramp_extractor.cc stages/segment_generator.cc stages/resources.cc \
+            stmlib/dsp/units.cc stmlib/utils/random.cc stages/quantizer.cc stages/braids_quantizer.cc \
+            -lm -o original_probe
+
+      - name: Roda a sonda
+        working-directory: orig
+        run: ./original_probe | tee sonda-original.txt
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: sonda-original
+          path: orig/sonda-original.txt
+
